@@ -1,4 +1,5 @@
 import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Atleta;
@@ -24,6 +25,17 @@ public class TimeAtleta {
 
         String json = serialize(time);
         System.out.println(json);
+
+        Time deserialized = deserialize(json);
+        System.out.println(deserialized);
+
+    }
+
+    private static Time deserialize(String json) throws JsonGenerationException, JsonMappingException, IOException {
+        ObjectMapper mapper = new ObjectMapper();
+
+        //deserializing team data
+        return mapper.readValue(json, new TypeReference<Time>(){});
 
     }
 
